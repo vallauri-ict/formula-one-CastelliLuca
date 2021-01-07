@@ -1,0 +1,15 @@
+E:\Scuola\INFO_2K21\Code\formula-one-JustSteve23-master\FormulaOneDLL\bin\Debug\FormulaOneDLL.dll
+E:\Scuola\INFO_2K21\Code\formula-one-JustSteve23-master\FormulaOneDLL\bin\Debug\FormulaOneDLL.pdb
+E:\Scuola\INFO_2K21\Code\formula-one-JustSteve23-master\FormulaOneDLL\obj\Debug\FormulaOneDLL.csprojAssemblyReference.cache
+E:\Scuola\INFO_2K21\Code\formula-one-JustSteve23-master\FormulaOneDLL\obj\Debug\FormulaOneDLL.dll
+E:\Scuola\INFO_2K21\Code\formula-one-JustSteve23-master\FormulaOneDLL\obj\Debug\FormulaOneDLL.pdb
+E:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\bin\Debug\FormulaOneDLL.dll
+E:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\bin\Debug\FormulaOneDLL.pdb
+E:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.csprojAssemblyReference.cache
+E:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.dll
+E:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.pdb
+D:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\bin\Debug\FormulaOneDLL.dll
+D:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\bin\Debug\FormulaOneDLL.pdb
+D:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.csprojAssemblyReference.cache
+D:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.dll
+D:\Scuola\INFO_2K21\Code\formula-one\FormulaOneDLL\obj\Debug\FormulaOneDLL.pdb
