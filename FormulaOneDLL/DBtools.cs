@@ -49,19 +49,81 @@ namespace FormulaOneDLL
             }
             return retVal;
         }
-        public DataTable getCountries()
+        public List<string> getCountries()
         {
-            DataTable retVal = new DataTable();
+            List<string> retVal = new List<string>();
             using (SqlConnection dbConn = new SqlConnection())
             {
                 dbConn.ConnectionString = connstring;
-                String sql = $"SELECT * FROM Country";
-                using (SqlCommand command = new SqlCommand(sql, dbConn))
+                Console.WriteLine("\n Query data example: ");
+                Console.WriteLine("========================================");
+                string sqlcommand = "SELECT * FROM country";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
                 {
                     dbConn.Open();
-                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        da.Fill(retVal);
+                        while (reader.Read())
+                        {
+                            string IsoCode = reader.GetString(0);
+                            string descr = reader.GetString(1);
+                            Console.WriteLine("{0} {1}", IsoCode, descr);
+                            retVal.Add(IsoCode + " - " + descr);
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        public List<Country> getCountriesObj()
+        {
+            List<Country> retVal = new List<Country>();
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                Console.WriteLine("\n Query data example: ");
+                Console.WriteLine("========================================");
+                string sqlcommand = "SELECT * FROM country";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string IsoCode = reader.GetString(0);
+                            string descr = reader.GetString(1);
+                            Console.WriteLine("{0} {1}", IsoCode, descr);
+                            retVal.Add(new Country(IsoCode, descr));
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        public Country getCountry(string code)
+        {
+            Country retVal = null;
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                Console.WriteLine("\n Query data example: ");
+                Console.WriteLine("========================================");
+                string sqlcommand = "SELECT * FROM country WHERE countryCode="+code+";";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string IsoCode = reader.GetString(0);
+                            string descr = reader.GetString(1);
+                            Console.WriteLine("{0} {1}", IsoCode, descr);
+                            retVal=new Country(IsoCode, descr);
+                        }
                     }
                 }
             }
