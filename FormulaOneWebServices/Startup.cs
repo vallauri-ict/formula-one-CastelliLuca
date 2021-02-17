@@ -31,10 +31,10 @@ namespace FormulaOneWebServices
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Country api:\nhttps://localhost:44348/api/country  visualizza tutte le nazioni\nhttps://localhost:44348/api/country/id  visualizza una nazione in base al codice inserito\n\nTeam api:\nhttps://localhost:44348/api/team  visualizza tutte i team\nhttps://localhost:44348/api/team/id  visualizza un team in base al codice inserito\n\n");
+                });
                 endpoints.MapControllers();
             });
         }

@@ -17,7 +17,76 @@ namespace FormulaOneDLL
         //public const string QUERYPATH = @"E:\Scuola\INFO_2K21\Code\formula-one\data\";
         public const string QUERYPATH = @"D:\Scuola\INFO_2K21\Code\formula-one\data\";
         public const string PATH = @"C:\data\formulaone\";
-        public const string connstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ PATH + "FormulaOne.mdf;Integrated Security=True";
+        public const string connstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ PATH + "formulaone.mdf;Integrated Security=True";
+
+        public List<Teams> getTeamsObj()
+        {
+            List<Teams> retVal = new List<Teams>();
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                Console.WriteLine("\n Query data example: ");
+                Console.WriteLine("========================================");
+                string sqlcommand = "SELECT * FROM teams";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string teamFullName = reader.GetString(2);
+                            string extCountry = reader.GetString(3);
+                            string teamPowerUnit = reader.GetString(4);
+                            string technicalChief = reader.GetString(5);
+                            string chassis = reader.GetString(6);
+                            int extFirstDriver = reader.GetInt32(7);
+                            int extSecondDriver = reader.GetInt32(8);
+                            string logo = reader.GetString(9);
+                            string img = reader.GetString(10);
+                            retVal.Add(new Teams(id, name, teamFullName, extCountry, teamPowerUnit, technicalChief, chassis, extFirstDriver, extSecondDriver, logo, img));
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        public Teams getTeam(string code)
+        {
+            Teams retVal = null;
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                string sqlcommand = "SELECT * FROM teams WHERE id=" + Convert.ToInt32(code)+ ";";   
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int teamCode = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string teamFullName = reader.GetString(2);
+                            string extCountry = reader.GetString(3);
+                            string teamPowerUnit = reader.GetString(4);
+                            string technicalChief = reader.GetString(5);
+                            string chassis = reader.GetString(6);
+                            int extFirstDriver = reader.GetInt32(7);
+                            int extSecondDriver = reader.GetInt32(8);
+                            string logo = reader.GetString(9);
+                            string img = reader.GetString(10);
+                            retVal=(new Teams(teamCode, name, teamFullName, extCountry, teamPowerUnit, technicalChief, chassis, extFirstDriver, extSecondDriver, logo, img));
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
         public DataTable nameTable()
         {
             DataTable retVal;
