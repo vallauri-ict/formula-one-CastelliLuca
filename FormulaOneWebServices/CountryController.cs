@@ -22,10 +22,10 @@ namespace FormulaOneWebServices
 
         // GET: api/Country/5
         [HttpGet("{IsoCode}", Name = "Get")]
-        public Country Get(string IsoCode)
+        public Country Get(string id)
         {
             DBtools d = new DBtools();
-            return d.getCountry(IsoCode);
+            return d.getCountry(id);
         }
 
         // POST: api/Country

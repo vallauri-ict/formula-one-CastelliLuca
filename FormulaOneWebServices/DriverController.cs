@@ -9,24 +9,23 @@ using FormulaOneDLL;
 
 namespace FormulaOneWebServices
 {
-    [Route("api/team")]
-    [ApiController]
-    public class TeamsController : ControllerBase
+    [Route("api/driver")]
+    public class DriverController : Controller
     {
         // GET: api/<controller>
         [HttpGet]
-        public List<Teams> Get()
+        public List<Driver> Get()
         {
             DBtools d = new DBtools();
-            return d.getTeamsObj();
+            return d.getDriversObj();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public Teams Get(string id)
+        public Driver Get(string id)
         {
             DBtools d = new DBtools();
-            return d.getTeam(id);
+            return d.getDriver(id);
         }
 
         // POST api/<controller>

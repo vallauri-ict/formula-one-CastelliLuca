@@ -54,6 +54,36 @@ namespace FormulaOneDLL
             return retVal;
         }
 
+        public Driver getDriver(string code)
+        {
+            Driver retVal = null;
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                string sqlcommand = "SELECT * FROM drivers WHERE id=" + Convert.ToInt32(code) + ";";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string firstName = reader.GetString(1);
+                            string lastName = reader.GetString(2);
+                            DateTime dob = reader.GetDateTime(3);
+                            string placeOfBirth = reader.GetString(4);
+                            string extCountry = reader.GetString(5);
+                            string img = reader.GetString(6);
+                            string description = reader.GetString(7);
+                            retVal=(new Driver(id, firstName, lastName, dob, placeOfBirth, extCountry, img, description));
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
         public Teams getTeam(string code)
         {
             Teams retVal = null;
@@ -61,7 +91,7 @@ namespace FormulaOneDLL
             {
                 dbConn.ConnectionString = connstring;
                 string sqlcommand = "SELECT * FROM teams WHERE id=" + Convert.ToInt32(code)+ ";";   
-                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn)) 
                 {
                     dbConn.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -172,15 +202,45 @@ namespace FormulaOneDLL
             return retVal;
         }
 
+        public List<Driver> getDriversObj()
+        {
+            List<Driver> retVal = new List<Driver>();
+            using (SqlConnection dbConn = new SqlConnection())
+            {
+                dbConn.ConnectionString = connstring;
+                Console.WriteLine("\n Query data example: ");
+                Console.WriteLine("========================================");
+                string sqlcommand = "SELECT * FROM drivers";
+                using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
+                {
+                    dbConn.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string firstName = reader.GetString(1);
+                            string lastName = reader.GetString(2);
+                            DateTime dob = reader.GetDateTime(3);
+                            string placeOfBirth = reader.GetString(4);
+                            string extCountry = reader.GetString(5);
+                            string img = reader.GetString(6);
+                            string description = reader.GetString(7);
+                            retVal.Add(new Driver(id,firstName,lastName,dob,placeOfBirth,extCountry,img,description));
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
         public Country getCountry(string code)
         {
             Country retVal = null;
             using (SqlConnection dbConn = new SqlConnection())
             {
                 dbConn.ConnectionString = connstring;
-                Console.WriteLine("\n Query data example: ");
-                Console.WriteLine("========================================");
-                string sqlcommand = "SELECT * FROM country WHERE countryCode="+code+";";
+                string sqlcommand = "SELECT * FROM country WHERE countryCode=" + code + ";";
                 using (SqlCommand command = new SqlCommand(sqlcommand, dbConn))
                 {
                     dbConn.Open();
